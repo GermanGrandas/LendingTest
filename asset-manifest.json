@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/lendingTest/static/css/main.95217eda.chunk.css",
+    "main.js": "/lendingTest/static/js/main.947123d0.chunk.js",
+    "main.js.map": "/lendingTest/static/js/main.947123d0.chunk.js.map",
+    "runtime-main.js": "/lendingTest/static/js/runtime-main.b97c77b0.js",
+    "runtime-main.js.map": "/lendingTest/static/js/runtime-main.b97c77b0.js.map",
+    "static/css/2.e248b034.chunk.css": "/lendingTest/static/css/2.e248b034.chunk.css",
+    "static/js/2.d81f3c86.chunk.js": "/lendingTest/static/js/2.d81f3c86.chunk.js",
+    "static/js/2.d81f3c86.chunk.js.map": "/lendingTest/static/js/2.d81f3c86.chunk.js.map",
+    "index.html": "/lendingTest/index.html",
+    "static/css/2.e248b034.chunk.css.map": "/lendingTest/static/css/2.e248b034.chunk.css.map",
+    "static/css/main.95217eda.chunk.css.map": "/lendingTest/static/css/main.95217eda.chunk.css.map",
+    "static/js/2.d81f3c86.chunk.js.LICENSE.txt": "/lendingTest/static/js/2.d81f3c86.chunk.js.LICENSE.txt",
+    "static/media/semantic.min.css": "/lendingTest/static/media/outline-icons.ddae9b1b.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b97c77b0.js",
+    "static/css/2.e248b034.chunk.css",
+    "static/js/2.d81f3c86.chunk.js",
+    "static/css/main.95217eda.chunk.css",
+    "static/js/main.947123d0.chunk.js"
+  ]
+}
