@@ -1,28 +1,25 @@
 import React,{useRef,useState} from 'react'
-import { Item,Grid,Header, Button } from 'semantic-ui-react'
+import { Item,Grid,Header, Button, Dropdown, Form } from 'semantic-ui-react'
 
-const ItemDetail = ({investor}) =>{ 
-    const {id,investor_name,left_amount,purchased,remaining,sold} = investor
 
-    const investorId = useRef(id);
 
+
+const ItemDetail = ({investor,setEdit}) =>{ 
+    const investorId = useRef(investor.id);
+    const {investor_name,purchased,sold} = investor
     const sold_str = `$${sold}`
-    const left_str = `$${left_amount}`
-
     return (
         <Item className="ui inverted segment simple_border" style={{margin : "0 0"}}>
             <Item.Content>
             <Item.Header style={{width : "100%"}}>
                 <Grid verticalAlign="middle" style={{maxWidth: "100%",margin: "0", padding:"1.4em"}}>
-                    <Grid.Row columns={6} textAlign="center" style={{padding:"0.1em"}}>
-                        <Grid.Column width={4}><Header as="h5" content={investor_name}/></Grid.Column>
-                        <Grid.Column width={2}> <Header as="h5" content={sold_str}/></Grid.Column>
-                        <Grid.Column width={2}><Header as="h5" content={purchased}/></Grid.Column>
-                        <Grid.Column width={2}><Header as="h5" content={left_str}/></Grid.Column>
-                        <Grid.Column width={2}><Header as="h5" content={remaining}/></Grid.Column>
+                    <Grid.Row columns={4} textAlign="center" style={{padding:"0.1em"}}>
+                        <Grid.Column width={5}><Header as="h5" content={investor_name}/></Grid.Column>
+                        <Grid.Column width={4}> <Header as="h5" content={sold_str}/></Grid.Column>
+                        <Grid.Column width={4}><Header as="h5" content={purchased}/></Grid.Column>
                         <Grid.Column width={3}>
                             
-                            <Button icon="pencil" color="teal" circular size="tiny"/>    
+                            <Button icon="pencil" color="teal" circular size="tiny" onClick={() => setEdit(investorId)}/>    
                             <Button icon="cancel" circular  color="teal" size="tiny" basic/>
                         </Grid.Column>
                     </Grid.Row>
@@ -33,13 +30,90 @@ const ItemDetail = ({investor}) =>{
     )
 }
 
+const EditView = ({investors, investor_info, finishEdit}) =>{
+    const {investor_name,left_amount,id} = investor_info
+    const numeric_amount = parseFloat(left_amount)
+
+    const [formData, setFormData] = useState({id : id, investor: "", sold: left_amount });
+
+    let { investor , sold} = formData
+    const changeForm = ({ target }) => {
+        setFormData({
+          ...formData,
+          [target.name]: target.value,
+        });
+      };
+    const handleSelect = (e, { value }) => setFormData({
+        ...formData,
+        "investor": value,
+      });;
+    const handleSubmit = e =>{
+        e.preventDefault()
+        const numerical_pattern = /^[+-]?\d+(\.\d+)?$/;
+        const isNumber  = numerical_pattern.test(sold);
+        if(isNumber && investor !== ""){
+            finishEdit(formData)
+        }
+        console.log(isNumber);
+        
+    }
+    return(
+        <Item className="ui inverted segment simple_border" style={{margin : "0 0"}}>
+            <Item.Content>
+                <Item.Header style={{width : "100%"}}>
+                    <Form onSubmit={handleSubmit}>
+                    <Grid verticalAlign="middle" style={{maxWidth: "100%",margin: "0", padding:"1.4em"}}>
+                        
+                            <Grid.Row columns={4} textAlign="center" style={{padding:"0.1em"}}>
+                                <Grid.Column width={6}>
+                                    <Form.Select  fluid
+                                        label='Select investor'
+                                        options={investors}
+                                        onChange={handleSelect}
+                                        name="investor"
+                                        placeholder={investor_name}/>
+                                </Grid.Column>
+                                <Grid.Column width={4}>
+                                    <Form.Input fluid label='Amount to sell' name="sold" placeholder={numeric_amount} onChange={changeForm} value={sold}/>
+                                </Grid.Column>
+                                <Grid.Column width={4}>
+                                    <Button icon="save" color="teal" circular size="tiny" type="submit"/>    
+                                    <Button icon="cancel" circular  color="teal" size="tiny" basic/>
+                                </Grid.Column>
+                            </Grid.Row>
+                        
+                        </Grid>
+                    </Form>
+                </Item.Header>
+            </Item.Content>
+        </Item>
+    )
+}
 export const InvestorsDetails = ({investors}) => {
+    const [selectedInvestor, setSelectedInvestor] = useState({})
+    const [setEditView, setSetEditView] = useState(false)
+    const investors_names = investors.map(({investor_name} )=> ({
+        key:investor_name,
+        value: investor_name,
+        text: investor_name,
+      }))
+    const setEdit = ({current : investor_id }) =>{
+        const seleted_inv = investors.filter(({id}) => id === investor_id)[0]
+        setSelectedInvestor(seleted_inv)
+        setSetEditView(true)
+    }
+
+    const finishEdit = investor =>{
+        console.log(investor);
+        setSetEditView(false)
+    }
     return (
         <Item.Group>
             {
-                investors.map(investor => {
-                return (<ItemDetail key={investor.id} investor={investor}/>)
-            })
+                !setEditView ?
+                    investors.map(investor => {
+                    return (<ItemDetail key={investor.id} investor={investor} setEdit={setEdit}/>)}) :
+                <EditView investors={investors_names} investor_info={selectedInvestor} finishEdit={finishEdit}/>
             }
         </Item.Group>
     )

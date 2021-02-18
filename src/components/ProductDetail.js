@@ -18,18 +18,16 @@ export const ProductDetail = ({product}) => {
                     </Grid.Row>
                     <Grid.Row style={{marginTop: "1.3em"}} >
                         <Grid verticalAlign="middle">
-                            <Grid.Row columns={6} textAlign="center">
-                                <Grid.Column width={4}><Header as="h5" content="Investor Name" inverted/></Grid.Column>
-                                <Grid.Column width={2}> <Header as="h5" content="Sold" inverted/></Grid.Column>
-                                <Grid.Column width={2}><Header as="h5" content="% Purchased" inverted/></Grid.Column>
-                                <Grid.Column width={2}><Header as="h5" content="Left amount" inverted/></Grid.Column>
-                                <Grid.Column width={3}><Header as="h5" content="% Remaining" inverted/></Grid.Column>
-                                <Grid.Column width={1}></Grid.Column>
+                            <Grid.Row columns={4} textAlign="center">
+                                <Grid.Column width={5}><Header as="h5" content="Investor Name" inverted/></Grid.Column>
+                                <Grid.Column width={4}> <Header as="h5" content="Sold" inverted/></Grid.Column>
+                                <Grid.Column width={4}><Header as="h5" content="% Purchased" inverted/></Grid.Column>
+                                <Grid.Column width={3}></Grid.Column>
                             </Grid.Row>
                         </Grid>
                     </Grid.Row>
                 </Grid.Row>
-                <Grid.Row style={{overflowY : "scroll",maxHeight : "43.5vh"}}>
+                <Grid.Row style={{overflowY : "scroll",maxHeight : "43.5vh", minHeight : "43.5vh"}}>
                     <InvestorsDetails investors={information}/>
                 </Grid.Row>
                 <Grid.Row className="card_button teal_space" verticalAlign="middle" textAlign="center">
