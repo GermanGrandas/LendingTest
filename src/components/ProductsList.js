@@ -1,7 +1,7 @@
 import React, { useRef,useState } from 'react'
 import { Grid, Header, Item } from 'semantic-ui-react'
 
-const ItemDetail = ({product}) =>{ 
+const ItemDetail = ({product, getInvestor}) =>{ 
     const {amount,date,product_id} = product
 
     const productId = useRef(product_id);
@@ -18,7 +18,7 @@ const ItemDetail = ({product}) =>{
     const leave = e => {setRef(false)}
     
     return (
-        <Item className="ui inverted segment item_class" style={{margin : "0 0"}} onMouseOver={enter} onMouseOut={leave}>
+        <Item className="ui inverted segment item_class" style={{margin : "0 0"}} onMouseOver={enter} onMouseOut={leave} onClick={() => getInvestor(productId.current)}>
             <Item.Content>
             <Item.Header style={{width : "100%"}}>
                 <Grid verticalAlign="middle" style={{maxWidth: "100%",margin: "0", padding:"1.4em"}}>
@@ -33,7 +33,7 @@ const ItemDetail = ({product}) =>{
                         </Grid.Column>
                         <Grid.Column textAlign="right" width={6}>
                             <Grid.Row>
-                                <Header as="h5" content="Advance" color={itemRef ? "" : "teal"} inverted={itemRef ? true : false}/>
+                                <Header as="h5" content="Advance" color={itemRef ? "black" : "teal"} inverted={itemRef ? true : false}/>
                             </Grid.Row>
                             <Grid.Row>
                                 <Header as="h6" content={string_date} inverted={itemRef ? true : false}/>
@@ -54,13 +54,13 @@ const ItemDetail = ({product}) =>{
     )
 }
 
-export const ProductsList = ({products}) => {
+export const ProductsList = ({products,getInvestor}) => {
     
     return (
         <Item.Group>
             {
                 products.map(product => {
-                return (<ItemDetail key={product.product_id} product={product}/>)
+                return (<ItemDetail key={product.product_id} product={product} getInvestor={getInvestor}/>)
             })
             }
         </Item.Group>

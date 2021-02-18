@@ -1,26 +1,29 @@
-import React from 'react'
-import { Button, Container, Grid,Header,Icon,Segment } from 'semantic-ui-react'
+import React, {useState} from 'react'
+import { Button, Grid,Header,Icon,Segment } from 'semantic-ui-react'
 import { useAPI } from '../hooks/useApi';
 import { ProductDetail } from './ProductDetail';
 import { ProductsList } from './ProductsList';
 
-import { investor_products,data_products } from "../staticInfo";
+import { data_products } from "../staticInfo";
 
 export const MainComponent = () => {
     // const {  data   } = useAPI("https://demo7555831.mockable.io/get_products_by_id",{user_id : ""});
     // const {information} = data
     // console.log(data);
     const {information} = data_products
-    // const information = []
+    const [currentProduct, setCurrentProduct] = useState("")
+    const getInvestor = productId =>{
+        setCurrentProduct(productId)
+    }
     return (
-        <Segment fluid attached="top" style={{ padding : "0 0", height : "100%"}}>
+        <Segment attached="top" style={{ padding : "0 0", height : "100%"}}>
             <Grid columns={2} doubling stretched style={{margin : "0 0",marginLeft : "0 !important", height : "100%"}}>
                 <Grid.Column width={5} style={{ height : "100%",padding : "0 0"}}>
                     <div className="ui left aligned card_header">
                         <Header as="h4" content="Select a product to syndicate" style={{margin : "0.5em 2em"}}/>
                     </div>
                     <div style={{overflowY : "scroll",minHeight : "48vh"}}>
-                        <ProductsList products={information} />
+                        <ProductsList products={information} getInvestor={getInvestor}/>
                     </div>
                     
                     <Segment textAlign="center" className="card_button">
@@ -44,8 +47,8 @@ export const MainComponent = () => {
                     </Segment>
                     
                 </Grid.Column>
-                <Grid.Column width={11}>
-                    <ProductDetail/>
+                <Grid.Column width={11} style={{padding : "0"}}>
+                    <ProductDetail product={currentProduct}/>
                 </Grid.Column>
             </Grid>
         </Segment>
