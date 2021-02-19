@@ -155,3 +155,5 @@ export const InvestorsDetails = ({investors}) => {
         </Item.Group>
     )
 }
+
+export {EditView}

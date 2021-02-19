@@ -1,0 +1,111 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<EditView /> component tests Edit View snapshot 1`] = `
+<Item
+  className="ui inverted segment simple_border"
+  style={
+    Object {
+      "margin": "0 0",
+    }
+  }
+>
+  <ItemContent>
+    <ItemHeader
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    >
+      <Form
+        as="form"
+        onSubmit={[Function]}
+        success={true}
+      >
+        <Grid
+          style={
+            Object {
+              "margin": "0",
+              "maxWidth": "100%",
+              "padding": "1.4em",
+            }
+          }
+          verticalAlign="middle"
+        >
+          <GridRow
+            columns={4}
+            style={
+              Object {
+                "padding": "0.1em",
+              }
+            }
+            textAlign="center"
+          >
+            <GridColumn
+              width={6}
+            >
+              <FormSelect
+                as={[Function]}
+                control={[Function]}
+                error={false}
+                fluid={true}
+                label="Select investor"
+                name="investor"
+                onChange={[Function]}
+                options={
+                  Array [
+                    Object {
+                      "key": "Hand, Stamm and Kreiger",
+                      "text": "Hand, Stamm and Kreiger",
+                      "value": "Hand, Stamm and Kreiger",
+                    },
+                    Object {
+                      "key": "Wolff LLC",
+                      "text": "Wolff LLC",
+                      "value": "Wolff LLC",
+                    },
+                  ]
+                }
+              />
+            </GridColumn>
+            <GridColumn
+              width={4}
+            >
+              <FormInput
+                as={[Function]}
+                control={[Function]}
+                error={false}
+                fluid={true}
+                label="Amount to sell"
+                name="sold"
+                onChange={[Function]}
+                placeholder={NaN}
+              />
+            </GridColumn>
+            <GridColumn
+              width={4}
+            >
+              <Button
+                as="button"
+                circular={true}
+                color="teal"
+                icon="save"
+                size="tiny"
+                type="submit"
+              />
+              <Button
+                as="button"
+                basic={true}
+                circular={true}
+                color="teal"
+                icon="cancel"
+                size="tiny"
+              />
+            </GridColumn>
+          </GridRow>
+        </Grid>
+      </Form>
+    </ItemHeader>
+  </ItemContent>
+</Item>
+`;
