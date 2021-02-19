@@ -13,7 +13,7 @@ export const MainComponent = () => {
 
     useEffect(() => {
         axios.post(
-            "http://demo7555831.mockable.io/get_products_by_id",{user_id : ""}
+            "https://demo7555831.mockable.io/get_products_by_id",{user_id : ""}
         ).then(
             ({data}) => {
                 let {information} = data
