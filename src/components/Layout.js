@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet'
 import { Header, Segment } from 'semantic-ui-react'
 import { HeaderComponent } from './Header'
 
@@ -6,6 +7,11 @@ export const Layout = ({children}) => {
     const year = new Date().getFullYear() || '2021'
     return (
         <>
+          <Helmet>
+            <meta charSet="utf-8" />
+            <title>LendingTest</title>
+            <link rel="canonical" href="https://germangrandas.github.io/LendingTest/" />
+          </Helmet>
          <HeaderComponent/>
          <main>{children}</main>
          <footer >

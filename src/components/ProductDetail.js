@@ -1,13 +1,20 @@
-import React from 'react'
+import React, {useState,useEffect} from 'react'
 import { Grid, Header, Progress } from 'semantic-ui-react'
+import axios from 'axios';
 import { InvestorsDetails } from './investorsDetails';
-import { useAPI } from '../hooks/useApi';
-import { investor_products} from "../staticInfo";
 
-export const ProductDetail = ({product}) => {
-    // const {  data   } = useAPI("https://demo7555831.mockable.io/get_investors_by_id",{product_id : product});
-    // const {information} = data
-    const {information} = investor_products
+const ProductDetail = ({product}) => {
+    const [information, setInformation] = useState([])
+    useEffect(() => {
+        axios.post(
+            "https://demo7555831.mockable.io/get_investors_by_id",{product_id : product}
+        ).then(
+            ({data}) => {
+                let {information} = data
+                setInformation(information)
+            }
+        ).catch(console.error)
+    }, [product])
     return (
         <Grid columns={1}>
             <Grid.Column>
@@ -46,3 +53,4 @@ export const ProductDetail = ({product}) => {
         </Grid>
     )
 }
+export default ProductDetail

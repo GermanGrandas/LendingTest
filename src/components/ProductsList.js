@@ -1,7 +1,8 @@
 import React, { useRef,useState } from 'react'
+import PropTypes from 'prop-types';
 import { Grid, Header, Item } from 'semantic-ui-react'
 
-const ItemDetail = ({product, getInvestor}) =>{ 
+const ItemDetail = ({product, getInvestor,selected}) =>{ 
     const {amount,date,product_id} = product
 
     const productId = useRef(product_id);
@@ -16,9 +17,9 @@ const ItemDetail = ({product, getInvestor}) =>{
 
     const enter = e=> {setRef(true)}
     const leave = e => {setRef(false)}
-    
+
     return (
-        <Item className="ui inverted segment item_class" style={{margin : "0 0"}} onMouseOver={enter} onMouseOut={leave} onClick={() => getInvestor(productId.current)}>
+        <Item className="ui inverted segment item_class" style={{margin : "0 0",}} onMouseOver={enter} onMouseOut={leave} onClick={() => getInvestor(productId.current)}>
             <Item.Content>
             <Item.Header style={{width : "100%"}}>
                 <Grid verticalAlign="middle" style={{maxWidth: "100%",margin: "0", padding:"1.4em"}}>
@@ -54,15 +55,20 @@ const ItemDetail = ({product, getInvestor}) =>{
     )
 }
 
-export const ProductsList = ({products,getInvestor}) => {
+const ProductsList = ({products,getInvestor,selected}) => {
     
     return (
         <Item.Group>
             {
                 products.map(product => {
-                return (<ItemDetail key={product.product_id} product={product} getInvestor={getInvestor}/>)
+                return (<ItemDetail key={product.product_id} product={product} getInvestor={getInvestor} selected={selected}/>)
             })
             }
         </Item.Group>
     )
 }
+ProductsList.propTypes = {
+    products : PropTypes.array.isRequired
+}
+
+export default ProductsList;

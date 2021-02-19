@@ -1,17 +1,27 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
 import { Button, Grid,Header,Icon,Segment } from 'semantic-ui-react'
-import { useAPI } from '../hooks/useApi';
-import { ProductDetail } from './ProductDetail';
-import { ProductsList } from './ProductsList';
+import axios from 'axios';
 
-import { data_products } from "../staticInfo";
+import ProductDetail from './ProductDetail';
+import ProductsList from './ProductsList';
+
+// import { data_products } from "../staticInfo";
 
 export const MainComponent = () => {
-    // const {  data   } = useAPI("https://demo7555831.mockable.io/get_products_by_id",{user_id : ""});
-    // const {information} = data
-    // console.log(data);
-    const {information} = data_products
+    const [information, setInformation] = useState([])
     const [currentProduct, setCurrentProduct] = useState("")
+
+    useEffect(() => {
+        axios.post(
+            "http://demo7555831.mockable.io/get_products_by_id",{user_id : ""}
+        ).then(
+            ({data}) => {
+                let {information} = data
+                setInformation(information)
+            }
+        ).catch(console.error)
+    }, [])
+    
     const getInvestor = productId =>{
         setCurrentProduct(productId)
     }
@@ -23,18 +33,18 @@ export const MainComponent = () => {
                         <Header as="h4" content="Select a product to syndicate" style={{margin : "0.5em 2em"}}/>
                     </div>
                     <div style={{overflowY : "scroll",minHeight : "48vh"}}>
-                        <ProductsList products={information} getInvestor={getInvestor}/>
+                        <ProductsList products={information} getInvestor={getInvestor} selected={currentProduct}/>
                     </div>
                     
                     <Segment textAlign="center" className="card_button">
                         <Grid columns={2}>
                             <Grid.Column>
-                                <Button color='teal' size='large' style={{borderRadius : "15px", width : "160px"}}>
+                                <Button color='teal' size="medium" style={{borderRadius : "15px", width : "160px"}}>
                                     <Icon name="close" /> Close
                                 </Button>
                             </Grid.Column>
                             <Grid.Column>
-                                <Button size='large' 
+                                <Button size='medium' 
                                     style={{ borderRadius : "15px", width : "160px", 
                                              background :"white" , color :"teal",
                                              border : "1px solid rgba(228, 228, 228,0.6)"}}>
