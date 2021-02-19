@@ -1,0 +1,138 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header /> component test Header Snapshot 1`] = `
+<header>
+  <Segment
+    inverted={true}
+    textAlign="center"
+  >
+    <Menu
+      aling="left"
+      attached="top"
+      inverted={true}
+      secondary={true}
+      stackable={true}
+    >
+      <Grid
+        style={
+          Object {
+            "width": "100%",
+          }
+        }
+      >
+        <GridRow
+          centered={true}
+          columns={3}
+          verticalAlign="middle"
+        >
+          <GridColumn
+            width={6}
+          >
+            <MenuMenu
+              position="left"
+            >
+              <img
+                alt="quantic-logo"
+                height={50}
+                src="https://lendingfront.com/wp-content/uploads/2019/12/white_logo.svg"
+                style={
+                  Object {
+                    "margin": "0.5em 0.4em",
+                  }
+                }
+                width={150}
+              />
+              <MenuItems
+                to="/"
+              >
+                <Header
+                  as="h4"
+                  content="APPLICATION"
+                  inverted={true}
+                />
+              </MenuItems>
+              <MenuItems
+                to="/"
+              >
+                <Header
+                  as="h4"
+                  inverted={true}
+                >
+                  <Icon
+                    as="i"
+                    name="search"
+                  />
+                  <HeaderContent>
+                    SEARCH
+                  </HeaderContent>
+                </Header>
+              </MenuItems>
+            </MenuMenu>
+          </GridColumn>
+          <GridColumn
+            width={4}
+          >
+            <Header
+              as="h1"
+              content="QA"
+              inverted={true}
+              textAlign="center"
+            />
+          </GridColumn>
+          <GridColumn
+            width={6}
+          >
+            <MenuMenu
+              position="right"
+            >
+              <MenuItems
+                to="/"
+              >
+                <Header
+                  as="h4"
+                  content="DASHBOARD"
+                  inverted={true}
+                />
+              </MenuItems>
+              <MenuItems
+                to="/"
+              >
+                <Header
+                  as="h4"
+                  inverted={true}
+                >
+                  <Icon
+                    as="i"
+                    name="address book"
+                    size="small"
+                  />
+                  <HeaderContent>
+                    USER ADMIN
+                  </HeaderContent>
+                </Header>
+              </MenuItems>
+              <MenuItems
+                to="/"
+              >
+                <Header
+                  as="h4"
+                  inverted={true}
+                >
+                  <Icon
+                    as="i"
+                    name="user circle"
+                    size="small"
+                  />
+                  <HeaderContent>
+                    USER ADMIN
+                  </HeaderContent>
+                </Header>
+              </MenuItems>
+            </MenuMenu>
+          </GridColumn>
+        </GridRow>
+      </Grid>
+    </Menu>
+  </Segment>
+</header>
+`;

@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Layout /> component test Layout Snapshot 1`] = `
+<Fragment>
+  <HelmetWrapper
+    defer={true}
+    encodeSpecialCharacters={true}
+  >
+    <meta
+      charSet="utf-8"
+    />
+    <title>
+      LendingTest
+    </title>
+    <link
+      href="https://germangrandas.github.io/LendingTest/"
+      rel="canonical"
+    />
+  </HelmetWrapper>
+  <HeaderComponent />
+  <main />
+  <footer>
+    <Segment
+      size="mini"
+      style={
+        Object {
+          "boxShadow": "-8px 15px 30px rgba(133,141,148,.66)",
+          "padding": "4em 0em",
+        }
+      }
+      textAlign="center"
+      vertical={true}
+    >
+      <Header
+        as="h3"
+        content="©LendingFront2021"
+      />
+    </Segment>
+  </footer>
+</Fragment>
+`;

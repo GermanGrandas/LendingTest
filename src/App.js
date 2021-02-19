@@ -1,7 +1,7 @@
 import { Layout } from './components/Layout';
 import './App.css';
 import 'semantic-ui-css/semantic.min.css'
-import { Header } from 'semantic-ui-react';
+import { Button, Header } from 'semantic-ui-react';
 import { MainComponent } from './components/MainComponent';
 
 
@@ -13,6 +13,7 @@ function App() {
           <MainComponent/>
         </div>
         <Header as="h1" inverted className="text_floated">Advances for syndication</Header>
+        <Button circular icon="add" color="orange" className="button_floated"/>
         <div style={{backgroundColor : "#00b5ad",margin: "0 0", width : "100%", height : "20vh"}}>
           
         </div>

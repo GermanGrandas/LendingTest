@@ -1,0 +1,125 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MainComponent /> component test render main window esqueleton 1`] = `
+<Segment
+  attached="top"
+  style={
+    Object {
+      "height": "100%",
+      "padding": "0 0",
+    }
+  }
+>
+  <Grid
+    columns={2}
+    doubling={true}
+    stretched={true}
+    style={
+      Object {
+        "height": "100%",
+        "margin": "0 0",
+        "marginLeft": "0 !important",
+      }
+    }
+  >
+    <GridColumn
+      style={
+        Object {
+          "height": "100%",
+          "padding": "0 0",
+        }
+      }
+      width={5}
+    >
+      <div
+        className="ui left aligned card_header"
+      >
+        <Header
+          as="h4"
+          content="Select a product to syndicate"
+          style={
+            Object {
+              "margin": "0.5em 2em",
+            }
+          }
+        />
+      </div>
+      <div
+        style={
+          Object {
+            "minHeight": "48vh",
+            "overflowY": "scroll",
+          }
+        }
+      >
+        <ProductsList
+          getInvestor={[Function]}
+          products={Array []}
+          selected=""
+        />
+      </div>
+      <Segment
+        className="card_button"
+        textAlign="center"
+      >
+        <Grid
+          columns={2}
+        >
+          <GridColumn>
+            <Button
+              as="button"
+              color="teal"
+              size="medium"
+              style={
+                Object {
+                  "borderRadius": "15px",
+                  "width": "160px",
+                }
+              }
+            >
+              <Icon
+                as="i"
+                name="close"
+              />
+               Close
+            </Button>
+          </GridColumn>
+          <GridColumn>
+            <Button
+              as="button"
+              size="medium"
+              style={
+                Object {
+                  "background": "white",
+                  "border": "1px solid rgba(228, 228, 228,0.6)",
+                  "borderRadius": "15px",
+                  "color": "teal",
+                  "width": "160px",
+                }
+              }
+            >
+              <Icon
+                as="i"
+                name="save"
+              />
+               Sell
+            </Button>
+          </GridColumn>
+        </Grid>
+      </Segment>
+    </GridColumn>
+    <GridColumn
+      style={
+        Object {
+          "padding": "0",
+        }
+      }
+      width={11}
+    >
+      <ProductDetail
+        product=""
+      />
+    </GridColumn>
+  </Grid>
+</Segment>
+`;
