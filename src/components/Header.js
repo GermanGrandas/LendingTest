@@ -1,4 +1,4 @@
-import { Segment, Menu,Header, Icon } from "semantic-ui-react";
+import { Segment, Menu,Header, Icon,Grid } from "semantic-ui-react";
 import React from 'react'
 import { Link } from "react-router-dom";
 
@@ -31,41 +31,44 @@ export const HeaderComponent = () => {
                     stackable
                     aling="left"
                 >
-                    <Menu.Menu position='left'>
-                        <img  alt='quantic-logo' src="https://lendingfront.com/wp-content/uploads/2019/12/white_logo.svg"  width={150} height={50} style={{margin:"0.5em 0.4em"}}/>
-                        <MenuItems to='/'><Header as="h4" content="APPLICATION" inverted/></MenuItems>
-                        <MenuItems to='/'>
-                            <Header as="h4" inverted>
-                                <Icon name='search'/>
-                                <Header.Content>SEARCH</Header.Content>
-                            </Header>
-                        </MenuItems>  
-                    </Menu.Menu>
+                    <Grid style={{width : "100%"}}>
+                        <Grid.Row columns={3}  centered verticalAlign="middle">
+                            <Grid.Column width={6}>
+                                <Menu.Menu position='left'>
+                                    <img  alt='quantic-logo' src="https://lendingfront.com/wp-content/uploads/2019/12/white_logo.svg"  width={150} height={50} style={{margin:"0.5em 0.4em"}}/>
+                                    <MenuItems to='/'><Header as="h4" content="APPLICATION" inverted/></MenuItems>
+                                    <MenuItems to='/'>
+                                        <Header as="h4" inverted>
+                                            <Icon name='search'/>
+                                            <Header.Content>SEARCH</Header.Content>
+                                        </Header>
+                                    </MenuItems>  
+                                </Menu.Menu>
+                            </Grid.Column>
+                            <Grid.Column width={4}>
+                                <Header as="h1" content="QA" inverted textAlign='center'  />
+                            </Grid.Column>
+                            <Grid.Column width={6}>
+                                <Menu.Menu position="right">
+                            
+                                    <MenuItems to='/'><Header as="h4" content="DASHBOARD" inverted/></MenuItems>
+                                    <MenuItems to='/'>
+                                        <Header as='h4' inverted>
+                                            <Icon name='address book' size='small' />
+                                            <Header.Content>USER ADMIN</Header.Content>
+                                        </Header>
+                                    </MenuItems>
+                                    <MenuItems to='/'>
+                                    <Header as='h4' inverted>
+                                        <Icon name='user circle' size='small' />
+                                        <Header.Content>USER ADMIN</Header.Content>
+                                    </Header>
+                                    </MenuItems>
+                                </Menu.Menu>
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid> 
                     
-                    <Menu.Item className="ui center aligned" >
-                        <Header as="h2" content="QA" inverted textAlign='center'  />
-                    </Menu.Item>
-                    
-                    <Menu.Menu position="right">
-                        
-                        <MenuItems to='/'><Header as="h4" content="DASHBOARD" inverted/></MenuItems>
-                        <MenuItems to='/'>
-                            <Header as='h4' inverted>
-                                <Icon name='address book' size='small' />
-                                <Header.Content>USER ADMIN</Header.Content>
-                            </Header>
-                        </MenuItems>
-                        <MenuItems to='/'>
-                        <Header as='h4' inverted>
-                            <Icon name='user circle' size='small' />
-                            <Header.Content>USER ADMIN</Header.Content>
-                        </Header>
-                        </MenuItems>
-                    </Menu.Menu>
-                    <Menu.Menu position='left'>
-                        
-
-                    </Menu.Menu>
                 </Menu>
             </Segment>
         </header>
