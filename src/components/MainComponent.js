@@ -6,18 +6,17 @@ import ProductDetail from './ProductDetail';
 import ProductsList from './ProductsList';
 
 // import { data_products } from "../staticInfo";
-
+// "https://demo7555831.mockable.io/get_products_by_id"
 export const MainComponent = () => {
     const [information, setInformation] = useState([])
     const [currentProduct, setCurrentProduct] = useState("")
 
     useEffect(() => {
         axios.post(
-            "https://demo7555831.mockable.io/get_products_by_id",{user_id : ""}
+            "/api/products_by_id",{"user_id" : "yyidouahbhsd"}
         ).then(
             ({data}) => {
-                let {information} = data
-                setInformation(information)
+                setInformation(data)
             }
         ).catch(console.error)
     }, [])

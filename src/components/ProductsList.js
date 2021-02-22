@@ -61,7 +61,7 @@ const ProductsList = ({products,getInvestor,selected}) => {
         <Item.Group>
             {
                 products.map(product => {
-                return (<ItemDetail key={product.product_id} product={product} getInvestor={getInvestor} selected={selected}/>)
+                return (<ItemDetail key={product.idf} product={product} getInvestor={getInvestor} selected={selected}/>)
             })
             }
         </Item.Group>

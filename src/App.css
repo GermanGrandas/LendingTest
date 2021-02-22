@@ -20,8 +20,9 @@
   font-size: 1.8em !important;
   margin: 0 auto;
   position: absolute;
-  top: 18vh;
-  right: 25vh;
+  top: -5vh;
+  right:-5vh;
+  z-index : 9;
   /* background : rgb(255, 217, 0) !important */
 }
 .card_header {

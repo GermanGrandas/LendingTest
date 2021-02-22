@@ -5,8 +5,8 @@ import axios from 'axios';
 
 
 
-const ItemDetail = ({investor,setEdit}) =>{ 
-    const investorId = useRef(investor.id);
+const ItemDetail = ({investor,setEdit,deleteInvestor}) =>{ 
+    const investorId = useRef(investor.idf);
     const {investor_name,purchased,sold} = investor
     const sold_str = `$${sold}`
     return (
@@ -37,7 +37,7 @@ const ItemDetail = ({investor,setEdit}) =>{
                         <Grid.Column width={3}>
                             
                             <Button icon="pencil" color="teal" circular size="tiny" onClick={() => setEdit(investorId)}/>    
-                            <Button icon="cancel" circular  color="teal" size="tiny" basic/>
+                            <Button icon="cancel" circular  color="teal" size="tiny" basic onClick={() => deleteInvestor(investorId)}/>
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
@@ -47,42 +47,34 @@ const ItemDetail = ({investor,setEdit}) =>{
     )
 }
 
-const EditView = ({investors, investor_info, finishEdit}) =>{
-    const {investor_name,left_amount,id} = investor_info
+// "https://demo7555831.mockable.io/edit_investor"
+const EditView = ({investors, investor_info, finishEdit,cancelEdit}) =>{
+    const {investor_name : edited_name , left_amount,idf} = investor_info
     const numeric_amount = parseFloat(left_amount)
-
-    const [formData, setFormData] = useState({id : id, investor: "", sold: left_amount });
+    const [formData, setFormData] = useState({idf : idf, investor_name: edited_name, sold: 0 });
+    
 
     const [error, setError] = useState(false)
-    let { investor , sold} = formData
+    let {investor_name, sold} = formData
     const changeForm = ({ target }) => {
         setFormData({
           ...formData,
           [target.name]: target.value,
         });
       };
-    const handleSelect = (e, { value }) => setFormData({
-        ...formData,
-        "investor": value,
-      });;
+    const handleSelect = (e, { value }) =>{
+        setFormData({
+            ...formData,
+            investor_name: value,
+          });;
+    } 
     const handleSubmit = e =>{
         e.preventDefault()
         const numerical_pattern = /^[+-]?\d+(\.\d+)?$/;
         const isNumber  = numerical_pattern.test(sold);
-        if(isNumber && investor !== ""){
+        if(isNumber){
             setError(false)
-            axios.put("https://demo7555831.mockable.io/edit_investor",formData).then(
-                ({data}) => {
-                    
-                    finishEdit(formData)
-                }
-            ).catch(
-                err => {
-                    setError(true)
-                    console.error(err)
-                }
-            )
-            
+            finishEdit({idf,formData})
         }
         else{
             setError(true)
@@ -115,7 +107,7 @@ const EditView = ({investors, investor_info, finishEdit}) =>{
                                 </Grid.Column>
                                 <Grid.Column width={4}>
                                     <Button icon="save" color="teal" circular size="tiny" type="submit"/>    
-                                    <Button icon="cancel" circular  color="teal" size="tiny" basic/>
+                                    <Button icon="cancel" circular  color="teal" size="tiny" basic onClick={cancelEdit}/>
                                 </Grid.Column>
                             </Grid.Row>
                         
@@ -126,31 +118,50 @@ const EditView = ({investors, investor_info, finishEdit}) =>{
         </Item>
     )
 }
-export const InvestorsDetails = ({investors}) => {
+export const InvestorsDetails = ({investors,investors_names,removeInvestor,updateInvestor}) => {
     const [selectedInvestor, setSelectedInvestor] = useState({})
     const [setEditView, setSetEditView] = useState(false)
-    const investors_names = investors.map(({investor_name} )=> ({
-        key:investor_name,
-        value: investor_name,
-        text: investor_name,
-      }))
+
     const setEdit = ({current : investor_id }) =>{
-        const seleted_inv = investors.filter(({id}) => id === investor_id)[0]
+        const seleted_inv = investors.filter(({idf}) => idf === investor_id)[0]
         setSelectedInvestor(seleted_inv)
         setSetEditView(true)
     }
-
-    const finishEdit = investor =>{
-        console.log(investor);
+    const cancelEdit = ()=>{
         setSetEditView(false)
+    }
+    const finishEdit = ({idf,formData}) =>{
+        axios.put(`/api/edit_investor/${idf}`,formData).then(
+            ({data}) => {
+                setSetEditView(false)
+                updateInvestor(formData)
+            }
+        ).catch(
+            err => {
+                setSetEditView(true)
+                console.error(err)
+            }
+        )
+    }
+    const deleteInvestor = ({current : investor_id })=>{
+        axios.delete(`api/delete_investor/${investor_id}`).then(
+            ({data}) => {
+                removeInvestor(investor_id)
+            }
+        ).catch(
+            err => {
+                console.error(err)
+            }
+        )
     }
     return (
         <Item.Group>
             {
                 !setEditView ?
                     investors.map(investor => {
-                    return (<ItemDetail key={investor.id} investor={investor} setEdit={setEdit}/>)}) :
-                <EditView investors={investors_names} investor_info={selectedInvestor} finishEdit={finishEdit}/>
+                    return (<ItemDetail key={investor.idf} investor={investor} setEdit={setEdit} deleteInvestor={deleteInvestor}/>)}) :
+                <EditView investors={investors_names} cancelEdit={cancelEdit}
+                    investor_info={selectedInvestor} finishEdit={finishEdit}/>
             }
         </Item.Group>
     )
