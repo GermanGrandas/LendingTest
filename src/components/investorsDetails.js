@@ -49,9 +49,9 @@ const ItemDetail = ({investor,setEdit,deleteInvestor}) =>{
 
 // "https://demo7555831.mockable.io/edit_investor"
 const EditView = ({investors, investor_info, finishEdit,cancelEdit}) =>{
-    const {investor_name : edited_name , left_amount,idf} = investor_info
+    const {investor_name : edited_name , left_amount,idf ,sold : old_value} = investor_info
     const numeric_amount = parseFloat(left_amount)
-    const [formData, setFormData] = useState({idf : idf, investor_name: edited_name, sold: 0 });
+    const [formData, setFormData] = useState({idf : idf, investor_name: edited_name, sold: old_value });
     
 
     const [error, setError] = useState(false)
@@ -95,6 +95,7 @@ const EditView = ({investors, investor_info, finishEdit,cancelEdit}) =>{
                                         onChange={handleSelect}
                                         name="investor"
                                         error={error}
+                                        value={investor_name}
                                         placeholder={investor_name}/>
                                 </Grid.Column>
                                 <Grid.Column width={4}>
@@ -144,7 +145,7 @@ export const InvestorsDetails = ({investors,investors_names,removeInvestor,updat
         )
     }
     const deleteInvestor = ({current : investor_id })=>{
-        axios.delete(`api/delete_investor/${investor_id}`).then(
+        axios.delete(`/api/delete_investor/${investor_id}`).then(
             ({data}) => {
                 removeInvestor(investor_id)
             }
